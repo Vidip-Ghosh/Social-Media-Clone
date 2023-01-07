@@ -5,9 +5,10 @@ import '../App.css'
 
 function BasicExample() {
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar bg="#cdb4e5" expand="lg">
+
         <Container>
-        <Navbar.Brand href="#home">Social Media</Navbar.Brand>
+        <Navbar.Brand href="#home"><h1 style={{color:'#d8677a'}}>Post It</h1></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav>
