@@ -18,3 +18,7 @@ ul {
 .postInput {
     height: 100px;
 }
+
+.cardItem {
+    display: inline;
+}

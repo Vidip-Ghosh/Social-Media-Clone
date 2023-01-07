@@ -1,36 +1,27 @@
-import React,{Component} from 'react';
-import {Form} from 'react-bootstrap'
-class DisplayVideo extends Component
+import React,{useRef,useState} from 'react';
+import './UploadVideo.css'
+export default function VideoInput(props)
 {
-    constructor(props) {
-      super(props)
-    
-      this.state = {
-         video: null
-      }
-    }
-    onVideoChange = event =>{
-        if(event.target.files && event.target.files[0])
-        {
-            let vid = event.target.files[0];
-            this.setState({
-                video: URL.createObjectURL(vid)
-            });
-        }
+    const {width,height} = props;
+    const inputRef = useRef();
+    const [source,setSource] = useState();
+
+    const handleFileChange = (event) =>{
+        const file = event.target.files[0];
+        const url = URL.createObjectURL(file);
+        setSource(url);
     };
-    render()
-    {
-        return(
-            <div>
-                <div>
-                    <div>
-                        <video src={this.state.video} alt="" />
-                        <input type="file" name="myVideo" onChange={this.onVideoChange} />
-                        <Form.Text className="text-muted">Upload Video</Form.Text>
-                    </div>
-                </div>
-            </div>
-        )
-    }
+    const handleChoose = (event) =>{
+        inputRef.current.click();
+    };
+    return (
+        <div className="VideoInput">
+            <input ref={inputRef} className="VideoInput_Input" type="file" onChange={handleFileChange} accept=".mov,.mp4"/>
+            {!source && <button className="btn btn-success" onClick={handleChoose}>Choose Video</button>}
+            {source && (
+                <video className="VideoInput_Video" width="100%" src={source} height={height} controls></video>
+            )}
+            <div className="VideoInput_footer">{source || "Nothing selected"}</div>
+        </div>
+    )
 }
-export default DisplayVideo;

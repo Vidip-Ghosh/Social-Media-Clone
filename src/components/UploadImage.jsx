@@ -1,5 +1,4 @@
 import React,{Component} from "react";
-import {Form} from 'react-bootstrap'
 class DisplayImage extends Component
 {
     constructor(props) {
@@ -21,13 +20,8 @@ class DisplayImage extends Component
     {
         return(
             <div>
-                <div>
-                    <div>
-                        <img src={this.state.image} alt="" />
-                        <input type="file" name="myImage" onChange={this.onImageChange} />
-                        <Form.Text className="text-muted">Upload Image</Form.Text>
-                    </div>
-                </div>
+                <img src={this.state.image} alt="" />
+                <input width="100%" className="imageInput" type="file" name="myImage" onChange={this.onImageChange} />
             </div>
         )
     }
